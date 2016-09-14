@@ -167,6 +167,8 @@ PushPullOSC {
 		);
 		pingResp = OSCFunc(
 			{|msg|
+				pingAction.value(this);
+
 				trace[\ping].if{
 					"ping:\n\tIP: %\n\tMAC: %".format(*msg[1..]).inform;
 				}

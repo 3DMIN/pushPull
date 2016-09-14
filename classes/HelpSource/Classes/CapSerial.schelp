@@ -36,9 +36,40 @@ q.caps.capMinMax = [ [ 0, 0 ], [ 0, 16383 ], [ 0, 0 ], [ 0, 0 ], [ 0, 9802 ], [ 
 
 
 // assign a function to be evaluated when new data was succesfully parsed
+(
 q.caps.capAction = {|... args|
 	args.postln;
-}
+};
+)
+
+
+////////////////////
+// or look at it in a bargraph
+
+(
+q.caps.capAction = {|vals|
+	q.allVectors = vals;
+	q.xy = vals.keep(2);
+};
+
+(
+q.win = Window.new.decorate.front;
+q.barview = MultiSliderView(q.win, q.win.bounds.extent * [0.2, 0.4]).size_(q.numVals);
+
+q.sliderview = Slider2D(q.win, q.win.bounds.extent * [0.4, 0.4]);
+);
+
+
+(
+q.skippy.notNil.if{q.skippy.stop};
+q.skippy = SkipJack({
+	q.barview.valueAction = q.allVectors;
+	q.sliderview.setXYActive(*(q.xy));
+
+}, 0.1);
+);
+q.skippy.dt = 0.1;
+)
 ::
 
 CLASSMETHODS::

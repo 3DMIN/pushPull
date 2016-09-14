@@ -4,7 +4,11 @@ categories:: Control, 3DMIN
 related:: Classes/Object, Classes/PushPullOSC
 
 DESCRIPTION::
-This is the class to interface with a PushPull of the student edition.
+This is the class to interface a PushPull of the student edition.
+
+NOTE::
+Documentation is mainly located in link::Classes/PushPullOSC::.
+::
 
 PushPull is an instrument prototype created as part of the 3DMIN project. It features digital and analog controls, most prominently a bellow made from cardboard. Sound synthesis combines analogue sound generation with digital sound manipulation. Moving the hand piece activates the bellow: hand movements restricted by the limitations of the bellow turn into gestures and create air flow over a microphone. Inertial sensors in the hand piece together with a thumb stick allow for continuous sound shaping, while four buttons complete the setup to trigger changes or change between synthesis engines.
 
@@ -13,110 +17,13 @@ This class provides an interface to the hardware via OSC.
 CLASSMETHODS::
 
 METHOD:: new
-Creates a new PushPull instance.
+Creates a new PushPull_SE instance.
 
 ARGUMENT:: netAddr
 the network port at which the PushPull is accessible.
 
-
 INSTANCEMETHODS::
+METHOD:: isLeft
+set to true if your PushPull is a left-handed version.
 
-
-METHOD:: imuAction
-Action that is evaluated for each IMU update (progressive).
-
-METHOD:: capAction
-Action that is evaluated for each update of the capacitive sensors readings (progressive).
-
-
-METHOD:: encoderAction
-Action that is evaluated when an encoder is turned or a button is pressed.
-
-METHOD:: batteryWarnAction
-Action that is evaluated when battery viltage drops below a threshold set in batteryWarnThresh.
-
-METHOD:: batteryWarnThresh
-Threshold below which the battery warning is issued.
-
-
-METHOD:: pingAction
-Action that is evaluated every time the pushpull sends a ping message. Can be used to implement a life sign.
-
-
-
-
-section:: values
-
-METHOD:: capRawVals
-raw capacitive sensor values
-
-METHOD:: capNormVals
-
-METHOD:: capTrigs
-
-METHOD:: direction
-
-
-section:: config
-
-METHOD:: batteryUri
-METHOD:: capUri
-METHOD:: imuUri
-METHOD:: pingUri
-METHOD:: encoderUri
-
-
-
-
-
-
-METHOD:: pr_makeResponders
-METHOD:: encoderDict
-
-METHOD:: setLight
-argument:: color
-
-
-
-section:: tareing
-
-METHOD:: tareCap
-argument:: isOn
-
-Enable/disable tareing of the capacitive sensing.
-
-METHOD:: capMinMax
-returns:: array of minima and maxima of capacitive sensors as given by tareCap.
-
-METHOD:: capMinThresh
-minimum value for caps, used instead of minimum value.
-
-
-section:: info
-
-METHOD:: netAddr
-the netAddr under which the PushPull is reachable.
-
-METHOD:: trace
-
-METHOD:: tareMag
-experimental.
-
-
-METHOD:: imuDict
-
-METHOD:: pr_tareCap
-argument:: arr
-
-METHOD:: pr_normalizeCap
-argument:: arr
-
-
-
-METHOD:: init
-argument:: myNetAddr
-
-
-
-EXAMPLES::
-
+PRIVATE:: pr_makeResponders
